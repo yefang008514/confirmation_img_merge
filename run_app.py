@@ -1,8 +1,6 @@
 import streamlit.web.cli as stcli
 import os, sys
 import pathlib 
-
-
  
 def resolve_path(path):
     resolved_path = os.path.abspath(os.path.join(os.getcwd(), path))
@@ -31,5 +29,6 @@ if __name__ == "__main__":
 # pyinstaller run_app.spec --clean
 
 
-# D:\audit_project\函证\函证下载
-# D:\audit_project\函证\函证合并
+
+# D:\audit_project\conformation\函证合并
+# D:\audit_project\conformation\函证下载

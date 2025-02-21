@@ -2,9 +2,10 @@ conda create --name img_merge python=3.8
 activate img_merge
 
 pip install Pillow
-pip install reportlab
 pip install pyinstaller 
 pip install streamlit
+pip install img2pdf
+
 
 
 打包

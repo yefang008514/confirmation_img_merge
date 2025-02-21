@@ -2,26 +2,34 @@ import streamlit as st
 from PIL import Image, ImageOps
 import os
 # from reportlab.pdfgen import canvas
-
+import img2pdf
+from pathlib import Path
 
 def images_to_pdf(image_list, output_filename):
-    from reportlab.pdfgen import canvas
-    c = canvas.Canvas(output_filename)
-    for i, image_path in enumerate(image_list):  
-        image = Image.open(image_path)
-        
-        image = ImageOps.exif_transpose(image)
-        width, height = image.size
-        c.setPageSize((width, height))
-        
-        temp_image_path = f"temp_image_{i}.jpg"
-        image.save(temp_image_path)
-        
-        c.drawImage(temp_image_path, 0, 0, width=width, height=height)
-        c.showPage()
+    # 将路径转换为 Path 对象，确保路径兼容性
+    image_list = [str(Path(image)) for image in image_list]
+    with open(output_filename, "wb") as pdf_file:
+        pdf_file.write(img2pdf.convert(image_list))
 
-        os.remove(temp_image_path)
-    c.save()
+
+# def images_to_pdf(image_list, output_filename):
+#     c = canvas.Canvas(output_filename)
+#     for i, image_path in enumerate(image_list):  
+#         image = Image.open(image_path)
+        
+#         image = ImageOps.exif_transpose(image)
+#         width, height = image.size
+#         c.setPageSize((width, height))
+        
+#         temp_image_path = f"temp_image_{i}.jpg"
+#         image.save(temp_image_path)
+        
+#         c.drawImage(temp_image_path, 0, 0, width=width, height=height)
+#         c.showPage()
+
+#         os.remove(temp_image_path)
+#     c.save()
+
 
 def find_similar_images(folder_path):
     similar_groups = {}
