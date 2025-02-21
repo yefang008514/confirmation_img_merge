@@ -1,0 +1,12 @@
+conda create --name img_merge python=3.8
+activate img_merge
+
+pip install Pillow
+pip install reportlab
+pip install pyinstaller 
+pip install streamlit
+
+
+打包
+
+pyinstaller run_app.spec --clean
